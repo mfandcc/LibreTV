@@ -641,7 +641,7 @@ async function search() {
                 const controller = new AbortController();
                 const timeoutId = setTimeout(() => controller.abort(), 8000);
                 
-                const response = await fetch(PROXY_URL + encodeURIComponent(apiUrl), {
+                const response = await fetch(apiUrl, {
                     headers: API_CONFIG.search.headers,
                     signal: controller.signal
                 });
@@ -687,7 +687,7 @@ async function search() {
                                 const pageController = new AbortController();
                                 const pageTimeoutId = setTimeout(() => pageController.abort(), 8000);
                                 
-                                const pageResponse = await fetch(PROXY_URL + encodeURIComponent(pageUrl), {
+                                const pageResponse = await fetch(pageUrl, {
                                     headers: API_CONFIG.search.headers,
                                     signal: pageController.signal
                                 });
@@ -1413,7 +1413,7 @@ async function importConfigFromUrl() {
         
         try {
             // 获取配置文件
-            const response = await fetch(PROXY_URL + encodeURIComponent(url));
+            const response = await fetch(url);
             if (!response.ok) throw '获取配置文件失败';
 
             const config = await response.json();

@@ -29,7 +29,7 @@ async function handleApiRequest(url) {
             const timeoutId = setTimeout(() => controller.abort(), 10000);
             
             try {
-                const response = await fetch(PROXY_URL + encodeURIComponent(apiUrl), {
+                const response = await fetch(apiUrl, {
                     headers: API_CONFIG.search.headers,
                     signal: controller.signal
                 });
@@ -113,7 +113,7 @@ async function handleApiRequest(url) {
             const timeoutId = setTimeout(() => controller.abort(), 10000);
             
             try {
-                const response = await fetch(PROXY_URL + encodeURIComponent(detailUrl), {
+                const response = await fetch(detailUrl, {
                     headers: API_CONFIG.detail.headers,
                     signal: controller.signal
                 });
@@ -210,7 +210,7 @@ async function handleCustomApiSpecialDetail(id, customApi) {
         const timeoutId = setTimeout(() => controller.abort(), 10000);
         
         // 获取详情页HTML
-        const response = await fetch(PROXY_URL + encodeURIComponent(detailUrl), {
+        const response = await fetch(detailUrl, {
             headers: {
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
             },
@@ -272,7 +272,7 @@ async function handleSpecialSourceDetail(id, sourceCode) {
         const timeoutId = setTimeout(() => controller.abort(), 10000);
         
         // 获取详情页HTML
-        const response = await fetch(PROXY_URL + encodeURIComponent(detailUrl), {
+        const response = await fetch(detailUrl, {
             headers: {
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
             },
@@ -356,7 +356,7 @@ async function handleAggregatedSearch(searchQuery) {
                 setTimeout(() => reject(new Error(`${source}源搜索超时`)), 8000)
             );
             
-            const fetchPromise = fetch(PROXY_URL + encodeURIComponent(apiUrl), {
+            const fetchPromise = fetch(apiUrl, {
                 headers: API_CONFIG.search.headers
             });
             
@@ -465,7 +465,7 @@ async function handleMultipleCustomSearch(searchQuery, customApiUrls) {
                 setTimeout(() => reject(new Error(`自定义API ${index+1} 搜索超时`)), 8000)
             );
             
-            const fetchPromise = fetch(PROXY_URL + encodeURIComponent(fullUrl), {
+            const fetchPromise = fetch(fullUrl, {
                 headers: API_CONFIG.search.headers
             });
             
